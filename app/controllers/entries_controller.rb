@@ -3,7 +3,7 @@ class EntriesController < ApplicationController
 
   # GET /entries or /entries.json
   def index
-    @entries = Entry.all
+    @entries = Entry.where("created_at >= ?", Date.today)
   end
 
   # GET /entries/1 or /entries/1.json
@@ -21,7 +21,6 @@ class EntriesController < ApplicationController
 
   # POST /entries or /entries.json
   def create
-    binding.pry
     @entry = Entry.new(entry_params)
 
     respond_to do |format|
@@ -51,7 +50,6 @@ class EntriesController < ApplicationController
   # DELETE /entries/1 or /entries/1.json
   def destroy
     # binding.pry = debugging
-    binding.pry
     @entry.destroy
 
     respond_to do |format|
